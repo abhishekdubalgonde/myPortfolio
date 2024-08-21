@@ -280,7 +280,7 @@ img.abhi_img{
   -webkit-backdrop-filter: blur(3.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  color: var(--text-color);
+  color: var(--bg-color);
 }
 
 
