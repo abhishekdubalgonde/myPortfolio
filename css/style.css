@@ -6,8 +6,8 @@
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Inter", sans-serif;
+  /* transition: all .6s .9s ease;  */
   list-style: none;
-  transition: all 0.2s cubic-bezier(0.7, 0.04, 0.66, 1.71);
   scroll-behavior: smooth;
 }
 
@@ -22,6 +22,7 @@
   --h2-font: 2.9rem;
   --p-font: 1rem;
 }
+
 
 body {
   color: var(--text-color);
@@ -77,37 +78,7 @@ nav {
   color: var(--main-color);
 }
 
-#menu-icon {
-  color: var(--text-color);
-  display: none;
-  font-size: 36px;
-  cursor: pointer;
-  z-index: 10000;
-}
 
-#header.sticky_header #menu-icon {
-  display: block;
-}
-/* Remove initial animation */
-.new_menu {
-  position: fixed !important;
-  height: fit-content;
-  bottom: 50px;
-  padding: 50px;
-  right: -9%;
-  z-index: 999;
-  background: rgba(116, 250, 182, 0.15);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(3.5px);
-  -webkit-backdrop-filter: blur(3.5px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  opacity: 0;
-}
-
-.new_menu.show {
-  animation: menu 1s forwards cubic-bezier(0.7, 0.04, 0.66, 1.71);
-}
 
 /* .......................header ends here */
 
@@ -138,34 +109,11 @@ nav {
   opacity: 0;
 } */
 
-.new_menu::after,
-.new_menu::before {
-  content: "";
-  position: absolute;
-  height: 80%;
-  width: 1px;
-  background-color: transparent;
-  bottom: 0px;
-  left: 47.5px;
-  z-index: -8;
-}
-.new_menu::after{
-  background-color: var(--main-color);
-  animation: menu_line linear;
-  animation-timeline: scroll();
-  transform-origin: top;
-  scale: 1 0;
-}
-@keyframes menu_line {
-  to{
-    scale: 1 1;
-  }
-}
+
 
 ul#my_menu {
   position: relative !important;
   display: flex;
-  flex-direction: column;
 }
 
 ul#my_menu li a {
@@ -184,17 +132,7 @@ ul#my_menu>li {
   margin-bottom: 25px;
 }
 
-ul#my_menu>li::after {
-  content: "";
-  position: absolute;
-  height: 8px;
-  width: 15%;
-  border-radius: 2px;
-  background-color: var(--main-color);
-  left: -10px;
-  cursor: pointer;
-  /* opacity: 0.7; */
-}
+
 
 ul#my_menu li>a:hover {
   color: var(--main-color);
@@ -233,48 +171,74 @@ section {
 
 #Home {
   padding-top: 10vh;
-  /* Adjust based on header height */
   position: relative;
-  /* overflow: hidden; */
   min-height: 100vh;
-}
-.home:not() ul{
-  display: none;
-}
-.abhi_img {
-  position: absolute;
-  filter: drop-shadow(25px -6px 15px #000006);
-  margin: auto;
-  animation: abhi_img 1s 1 forwards cubic-bezier(0.7, 0.04, 0.66, 1.71) 0.3s;
-  opacity: 0;
 }
 
 /* ////////////////Home section */
 .Home {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+.home_img{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-80%,-50%);
+  width: 690px;
+  height: fit-content;
+  overflow: hidden;
+  animation: bb 18s infinite ease-in-out;
+  border-radius: 36% 64% 75% 25% / 26% 46% 54% 74% ;
+  background-color: transparent;
+}
+@keyframes bb {
+  0%,100%{
+    border-radius: 60% 40% 71% 29% / 45% 58% 42% 55%;
+    background-color: var(--bg-color);
+  }
+  50%{
+    border-radius: 25% 75% 71% 29% / 45% 32% 68% 55%;
+    background-color: var(--bg-color);
+  }
+}
+img.abhi_img{
+  filter: drop-shadow(25px -6px 15px #000006);
+  margin: auto;
+  animation: abhi_img 0.6s forwards ease;
+  opacity: 0;
+}
 
 .home-content {
+  width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  max-width: 900px;
   margin: auto;
+  /* border: solid; */
 }
 .intro{
   position: absolute;
   top: 50%;
   left: 50%;
-  padding-left: 100px;
-  transform: translate(-40%, -30%);
+  transform: translate(-10%, -40%);
 }
 .intro h1 {
   font-size: var(--h1-font);
   margin-bottom: 20px;
   color: var(--main-color); /* Highlight name with the main color */
   font-weight: 700; /* Slightly bolder font */
+  /* transform: translateY(100px); */
+  animation: ho_a .6s forwards ease;
+  scale: .7;
+  opacity: 0;
+}
+@keyframes ho_a {
+  to{
+    scale: 1;
+    opacity: 1;
+  }
 }
 
 .intro p {
@@ -283,6 +247,11 @@ section {
   max-width: 600px;
   line-height: 1.6; /* Better line spacing for readability */
   color: var(--other-color); /* Light color for text */
+  /* transform: translateY(100px); */
+  animation: ho_a .6s forwards ease;
+  opacity: 0;
+  scale: .7;
+
 }
 .btn_home{
   width: 80%;
@@ -319,7 +288,7 @@ section {
   /* background: transparent; */
   background: var(--main-color);
   padding: 60px 20px;
-  width: 100vw;
+  width: 100%;
   /* animation: about_bg linear forwards;
   animation-timeline: view(100% 5%); */
 }
